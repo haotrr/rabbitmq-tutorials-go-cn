@@ -20,7 +20,7 @@ RabbitMQ，或者更一般的消息，使用了一些专业术语。
 注意生产者、消费者和消息代理不一定需要存在于同一台主机上，且对大部分应用程序来说，这才是常态。
 
 ## “Hello World”
-本教程中，我们使用 Go 创建两个小程序：一个生产者用于发送一条简单的消息，一个消费者接收信息本将其打印。作为开始，我们将（gloss over）详细阐述几个 [Go RabbitMQ](https://godoc.org/github.com/streadway/amqp) API, 将主要集中精力在简单的事情上：发送一条 “Hello World” 的消息。
+本教程中，我们使用 Go 创建两个小程序：一个生产者用于发送一条简单的消息，一个消费者接收信息本将其打印。作为开始，我们将（gloss over）详细阐述几个 [Go RabbitMQ](https://godoc.org/github.com/streadway/amqp) API, 将主要集中精力在简单的事情上：发送一条 “Hello World” 的消息。
 
 在下面的图示中，“P” 代表生产者，“C” 代表消费者，中间的盒子代表一个队列 -- RabbitMQ 中为消费者保存消息的消息缓存。
 
@@ -64,7 +64,7 @@ func failOnError(err error, msg string) {
   }
 }
 ```
-然后，连接 RabbitMQ 服务器：
+然后，连接 RabbitMQ 服务器：
 ```go
 conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
 failOnError(err, "Failed to connect to RabbitMQ")
@@ -102,17 +102,17 @@ failOnError(err, "Failed to publish a message")
 ```
 声明一个队列时幂等的 -- 只有当队列不存在的时候，才会去创建这个队列。消息内容是一个字节数组（byte array），这样我们就能将任何想要的数据编码在里面了。
 
-这里是完整的 [send.go](../tutorail-one/send.go) 文件。
+这里是完整的 [send.go](../tutorial-one/send.go) 文件。
 
 > Note:
 >
-> **发送并没有成功！**
+> **发送并没有成功！**
 >
-> 如果这是你第一次使用 RabbitMQ 并且没有看到“发送”出去的消息，你可能会想是不是哪里出现了错误。可能的原因是消息代理启动的时候没有分配到做够的磁盘空间（默认情况下至少需要 200 MB ）从而无法接收消息。检查消息代理的日志确认或者必要时增大限制值。页面 [RabbitMQ - RabbitMQ Configuration](https://www.rabbitmq.com/configure.html#config-items) 展示了如何修改 `disk_free_limit` 的值。
+> 如果这是你第一次使用 RabbitMQ 并且没有看到“发送”出去的消息，你可能会想是不是哪里出现了错误。可能的原因是消息代理启动的时候没有分配到做够的磁盘空间（默认情况下至少需要 200 MB ）从而无法接收消息。检查消息代理的日志确认或者必要时增大限制值。页面 [RabbitMQ - RabbitMQ Configuration](https://www.rabbitmq.com/configure.html#config-items) 展示了如何修改 `disk_free_limit` 的值。
 >
 
 ## 接收
-以上就是一个完整的发布者。而消费者将从 RabbitMQ 拉取消息，所以不想发布者那样发送一条消息，消费者将一直监听消息并将其打印出来。
+以上就是一个完整的发布者。而消费者将从 RabbitMQ 拉取消息，所以不想发布者那样发送一条消息，消费者将一直监听消息并将其打印出来。
 
 ![1-6-receiving.png](../pics/1-6-receiving.png)
 
@@ -181,7 +181,7 @@ log.Printf(" [*] Waiting for messages. To exit press CTRL+C")
 <-forever
 ```
 
-这里是完整的 [receive.go](../tutorail-one/receive.go) 文件。
+这里是完整的 [receive.go](../tutorial-one/receive.go) 文件。
 
 ## 作为一个整体
 现在我们同时运行两个程序。在一个终端中，运行发布者：
@@ -197,4 +197,4 @@ go run receive.go
 
 如果想要查看队列信息，运行命令 `rabbitmqctl list_queues`。
 
-接下来，请移步至 [教程二](../turorial-two/README.md) 创建一个简单的 *工作队列*。
+接下来，请移步至 [教程二](../turorial-two/README.md) 创建一个简单的 *工作队列*。
