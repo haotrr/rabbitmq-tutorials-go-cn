@@ -1,6 +1,6 @@
 # Topics
 
-[教程四 原文地址: "Topics"](http://www.rabbitmq.com/tutorial-five-go.html)
+[教程五 原文地址: "Topics"](http://www.rabbitmq.com/tutorial-five-go.html)
 
 在 [教程四](./routing.md) 中我们改善了日志系统，为了伪造出广播功能，我们使用 direct 交换机来替换 fanout 交换机，同时我们获得了选择性接收日志的能力。
 
