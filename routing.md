@@ -327,4 +327,4 @@ go run emit_log_direct.go error "Run. Run. Or it will explode."
 
 完整的源代码参见：[emit_log_direct.go](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/emit_log_direct.go) 和 [receive_log_direct.go](https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/receive_log_direct.go)
 
-请移步 [教程五](https://www.rabbitmq.com/tutorials/tutorial-five-go.html) 探究如何基于模式来监听消息。
+请移步 [教程五](./topics.md) 探究如何基于模式来监听消息。
